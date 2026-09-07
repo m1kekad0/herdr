@@ -1,0 +1,23 @@
+agent = "claude"
+description = "Bash 承認プロンプト（カーソルが 1. Yes にある resting layout）"
+evidence = "src/detect/manifest/tests.rs claude_bash_prompt_with_dont_ask_again_option_matches_bash_rule（issue #2650 の回帰ケースと同一画面）"
+expected_state = "blocked"
+expected_rule = "bash_permission_prompt"
+expected_visible_blocker = true
+
+screen = '''
+────────────────────────────────────────────────────────────────
+ Bash command
+
+   curl -sS -o /tmp/probe.html https://example.com
+   Download example.com to /tmp/probe.html
+
+ This command requires approval
+
+ Do you want to proceed?
+ ❯ 1. Yes
+   2. Yes, and don't ask again for: curl *
+   3. No
+
+ Esc to cancel · Tab to amend · ctrl+e to explain
+'''

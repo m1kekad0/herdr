@@ -1543,4 +1543,6 @@ fn line_start_offset(content: &str, lines: &[&str], index: usize) -> usize {
 }
 
 #[cfg(test)]
+mod fixture_tests;
+#[cfg(test)]
 mod tests;

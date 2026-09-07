@@ -1,0 +1,16 @@
+agent = "codex"
+description = "OSC が static のときの screen working fallback"
+evidence = "src/detect/manifest/tests.rs codex_screen_working_fallback_handles_static_osc_title と同一画面"
+expected_state = "working"
+expected_visible_working = true
+osc_title = "project"
+
+screen = '''
+• I’ll run it and wait for completion.
+
+◦ Working (1m 16s • esc to interrupt) · 1 background…
+
+› Use /skills to list available skills
+
+gpt-5.6-sol default · /work
+'''
