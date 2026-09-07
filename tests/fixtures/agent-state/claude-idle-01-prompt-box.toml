@@ -1,0 +1,14 @@
+agent = "claude"
+description = "foreground turn 終了後の idle プロンプト（background shell 存続中）"
+evidence = "src/detect/manifest/tests.rs claude_idle_prompt_with_background_shell_is_idle（Claude Code 2.1.251 の実機 capture、issue #3414）"
+expected_state = "idle"
+expected_visible_idle = true
+
+screen = '''
+✻ Sautéed for 10s · 1 shell still running
+
+──────────────────────────────────────────────────────── WINDOWS ─
+❯
+────────────────────────────────────────────────────────────────
+  ⏵⏵ auto mode on · 1 shell · ← for agents                     /rc
+'''

@@ -1,0 +1,13 @@
+agent = "codex"
+description = "作業表示の直下にある live の承認プロンプト（enter to confirm）"
+evidence = "src/detect/manifest/tests.rs codex_screen_blocker_outranks_working_fallback と同一画面"
+expected_state = "blocked"
+expected_rule = "live_strong_blocker"
+expected_visible_blocker = true
+osc_title = "project"
+
+screen = '''
+• Working (4s • esc to interrupt)
+› 1. Yes, proceed
+Press enter to confirm or esc to cancel
+'''

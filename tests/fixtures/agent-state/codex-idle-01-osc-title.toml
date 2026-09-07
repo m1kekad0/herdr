@@ -1,0 +1,7 @@
+agent = "codex"
+description = "plain な OSC title の idle（spinner・Action Required なし）"
+evidence = "src/detect/manifest/tests.rs codex_osc_title_plain_is_idle と同一条件"
+expected_state = "idle"
+expected_visible_idle = true
+osc_title = "llm-proxy"
+screen = ""

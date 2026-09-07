@@ -1,0 +1,14 @@
+agent = "codex"
+description = "終了済み応答の [y/N] 風テキストが current prompt より上にある snapshot（Blocked に張り付かないことの保証）"
+evidence = "src/detect/manifest/tests.rs codex_weak_blocker_ignores_finished_response_above_current_prompt と同一画面"
+expected_state = "idle"
+expected_visible_idle = true
+osc_title = "project"
+
+screen = '''
+• The `wt rm` transcript now shows [y/N] / esc, matching the real prompt.
+
+─ Worked for 4m 59s ─
+
+› Ask Codex to do anything
+'''

@@ -1,0 +1,12 @@
+agent = "claude"
+description = "blocker 解消後に foreground turn が継続している snapshot（Blocked に張り付かないことの保証）"
+evidence = "src/detect/manifest/tests.rs claude_live_turn_with_background_shell_remains_working（issue #3414 関連の実機由来レイアウト）"
+expected_state = "working"
+expected_visible_working = true
+
+screen = '''
+────────────────────────────────────────────────────────────────
+❯
+────────────────────────────────────────────────────────────────
+  ⏵⏵ auto mode on · 1 shell · esc to interrupt
+'''
