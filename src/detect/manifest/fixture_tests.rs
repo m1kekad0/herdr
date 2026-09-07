@@ -16,6 +16,7 @@
 use super::{explain_with_input, DetectionInput};
 
 #[derive(Debug, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
 struct AgentStateFixture {
     agent: String,
     description: String,
@@ -71,6 +72,13 @@ fn check_fixture(path: &std::path::Path) -> Result<(), String> {
 
     let mut problems = Vec::new();
     let expected_state = parse_expected_state(&fixture.expected_state, &file);
+    // blocked は matched rule まで厳密一致させる契約のため、expected_rule の
+    // 未指定は fixture 定義エラーとして fail させる（working / idle は任意）。
+    if expected_state == super::super::AgentState::Blocked && fixture.expected_rule.is_none() {
+        return Err(format!(
+            "fixture {file}: expected_state が blocked の場合は expected_rule が必須"
+        ));
+    }
     if result.state != expected_state {
         problems.push(format!(
             "state が不一致: 期待 {} 実際 {}",
