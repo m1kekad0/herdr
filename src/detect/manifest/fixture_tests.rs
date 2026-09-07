@@ -12,6 +12,9 @@
 //! - `evidence` に根拠（元テスト・issue・取得条件）を必ず残す。
 //! - `blocked` は `expected_rule` まで厳密一致、`working` / `idle` は原則
 //!   state 主体で検証し、ルール改善時の脆さを抑える。
+//! - `expected_visible_*` は未指定時 `false` として検証される。state だけを
+//!   見て visible signal を無視する fixture にはしない。`blocked` / `working` /
+//!   `idle` の誤判定検出力を保つための意図的な契約である。
 
 use super::{explain_with_input, DetectionInput};
 
@@ -42,13 +45,13 @@ fn fixture_dir() -> std::path::PathBuf {
     std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/agent-state")
 }
 
-fn parse_expected_state(name: &str, file: &str) -> super::super::AgentState {
+fn parse_expected_state(name: &str, file: &str) -> Result<super::super::AgentState, String> {
     match name {
-        "idle" => super::super::AgentState::Idle,
-        "working" => super::super::AgentState::Working,
-        "blocked" => super::super::AgentState::Blocked,
-        "unknown" => super::super::AgentState::Unknown,
-        _ => panic!("fixture {file}: 不正な expected_state {name:?}"),
+        "idle" => Ok(super::super::AgentState::Idle),
+        "working" => Ok(super::super::AgentState::Working),
+        "blocked" => Ok(super::super::AgentState::Blocked),
+        "unknown" => Ok(super::super::AgentState::Unknown),
+        _ => Err(format!("fixture {file}: 不正な expected_state {name:?}")),
     }
 }
 
@@ -60,7 +63,7 @@ fn check_fixture(path: &std::path::Path) -> Result<(), String> {
         toml::from_str(&content).map_err(|err| format!("fixture {file} を解釈できない: {err}"))?;
 
     let agent = super::super::parse_agent_label(&fixture.agent)
-        .unwrap_or_else(|| panic!("fixture {file}: 不正な agent {:?}", fixture.agent));
+        .ok_or_else(|| format!("fixture {file}: 不正な agent {:?}", fixture.agent))?;
     let result = explain_with_input(
         agent,
         DetectionInput {
@@ -71,7 +74,7 @@ fn check_fixture(path: &std::path::Path) -> Result<(), String> {
     );
 
     let mut problems = Vec::new();
-    let expected_state = parse_expected_state(&fixture.expected_state, &file);
+    let expected_state = parse_expected_state(&fixture.expected_state, &file)?;
     // blocked は matched rule まで厳密一致させる契約のため、expected_rule の
     // 未指定は fixture 定義エラーとして fail させる（working / idle は任意）。
     if expected_state == super::super::AgentState::Blocked && fixture.expected_rule.is_none() {
