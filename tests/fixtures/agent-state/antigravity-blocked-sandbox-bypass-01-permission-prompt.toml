@@ -1,0 +1,25 @@
+agent = "antigravity"
+description = "sandbox bypass コマンド実行の承認プロンプト(curl -sI https://example.com)"
+evidence = "Commander が実際の Antigravity CLI 1.1.28 (Gemini 3.8 Flash) で curl -sI https://example.com を実行させ、herdr agent read --source detection --format text で採取(2026-09-09, issue #4)"
+expected_state = "blocked"
+expected_rule = "permission_prompt"
+expected_visible_blocker = true
+
+screen = '''
+Command
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Requesting permission for:
+   curl -sI https://example.com
+
+🔓 Allow sandbox bypass for command execution?
+⚠️ Confirm the command is safe to run outside of the sandbox with full network and disk access.
+
+> 1. Yes, run command
+  2. Yes, and always allow in this conversation for commands that start with 'curl -sI https://example.com'
+  3. Yes, and always allow for commands that start with 'curl -sI https://example.com' (Persist to settings.json)
+  4. No, cancel
+
+  ↑/↓ Navigate · tab Amend · ctrl+g edit/expand command
+esc to cancel                                                                                                               accept-edits · Gemini 3.8 Flash · high
+'''

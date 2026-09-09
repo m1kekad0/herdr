@@ -1,0 +1,17 @@
+agent = "antigravity"
+description = "sandbox bypass プロンプトで '4. No, cancel' を選択した直後"
+evidence = "Commander が実機の Antigravity CLI で拒否後の画面を herdr agent read --source detection --format text で採取(2026-09-09, issue #4)"
+expected_state = "idle"
+
+screen = '''
+● Bash(curl -sI https://example.com)
+● Bash(curl -sI https://example.com) (ctrl+o to expand)
+
+Command
+  ⎿  User declined the tool call
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+>
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+? for shortcuts                                                                                                             accept-edits · Gemini 3.8 Flash · high
+'''
