@@ -1,0 +1,19 @@
+agent = "antigravity"
+description = "会話文中に 'requesting permission for:' と 'allow sandbox bypass' の両方の文字列が含まれるが、選択肢UIが無いため blocked と誤検知しない(false positive 回帰)"
+evidence = "Commander が実機の Antigravity に該当フレーズを含む質問を送った際、自身の入力行がエコーされた画面。herdr agent explain で permission_prompt.matched=false を確認済み(2026-09-09, issue #4)"
+expected_state = "idle"
+
+screen = '''
+────────────────────────────────────────────────────────────
+> ツールは使わず、テキストで回答してください。Antigravity CLI が表示する 'Requesting permission for:' や '🔓 Allow sandbox bypass for command execution?'
+  という文言について、それらが何を意味するか2文で説明してください。実際のコマンド実行やツール呼び出しは行わないでください。
+
+▸ Thought for 4s, 578 tokens
+  Interpreting CLI Permission Requests
+  これらは、Antigravity CLI がネットワーク通信やワークスペース外へのアクセスなどを伴うコマンドを実行する際に、標準の保護隔離環境(サンドボックス)を解除してホスト環境上で直接実行してよいかをユーザーに確認しているプロンプトです。ユーザーがこの要求を承認するとサンドボックス制限を外してコマンドが実行され、拒否した場合はセキュリティ保護のため実行が安全にブロックされます。
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+>
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+? for shortcuts                                                                                                             accept-edits · Gemini 3.8 Flash · high
+'''

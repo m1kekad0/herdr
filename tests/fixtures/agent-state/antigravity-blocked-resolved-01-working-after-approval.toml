@@ -1,0 +1,23 @@
+agent = "antigravity"
+description = "sandbox bypass プロンプトで '1. Yes, run command' を選択した直後(blocked に張り付かないことの保証)"
+evidence = "Commander が実機の Antigravity CLI で承認後の画面を herdr agent read --source detection --format text で採取(2026-09-09, issue #4)"
+expected_state = "idle"
+
+screen = '''
+● Bash(curl -sI https://example.com)
+● Bash(curl -sI https://example.com) (ctrl+o to expand)
+
+  指定されたコマンド curl -sI https://example.com を実行しました。
+
+    HTTP/2 200
+    date: Wed, 09 Sep 2026 12:42:10 GMT
+    content-type: text/html
+    server: cloudflare
+
+  指示通り、追加の操作は行わずに次の指示をお待ちしています。
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+>
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+? for shortcuts                                                                                                             accept-edits · Gemini 3.8 Flash · high
+'''

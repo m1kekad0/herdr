@@ -1,7 +1,7 @@
 id = "agy"
-version = "2026.06.24.1"
+version = "2026.09.09.1"
 min_engine_version = 1
-updated_at = "2026-06-24T00:00:00Z"
+updated_at = "2026-09-09T00:00:00Z"
 aliases = ["antigravity", "antigravity-cli"]
 
 [[rules]]
@@ -14,6 +14,12 @@ contains = ["requesting permission for:"]
 any = [
   { contains = ["do you want to proceed?"] },
   { contains = ["tab amend", "edit command"] },
+  { contains = ["allow sandbox bypass"], all = [
+    { any = [
+      { line_regex = ['(?i)^\s*[>›❯]?\s*1\.\s*yes'] },
+      { line_regex = ['(?i)^\s*[>›❯]?\s*[2-4]\.\s*(yes|no)'] },
+    ] },
+  ] },
 ]
 
 [[rules]]
