@@ -1,0 +1,15 @@
+agent = "antigravity"
+description = "コマンド実行中・思考中の Braille spinner 表示（Waiting...）による working 状態"
+evidence = "実機 Antigravity CLI (Gemini 3.8 Flash) 稼働中の pane を herdr agent read --source detection --format text で採取(2026-09-10, issue #1)"
+expected_state = "working"
+expected_rule = "spinner_working"
+expected_visible_working = true
+
+screen = '''
+● Bash(git status) (ctrl+o to expand)
+⣽  Waiting...
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+>
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+esc to cancel                                                                                                                              Gemini 3.8 Flash · high
+'''

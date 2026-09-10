@@ -1,0 +1,16 @@
+agent = "claude"
+description = "MCP elicitation ダイアログ（Accept/Decline 選択肢と Esc to cancel フッターによる入力待ち）"
+evidence = "src/detect/manifest/tests.rs claude_mcp_elicitation_is_blocked（Claude Code 実機 capture、issue #3283）"
+expected_state = "blocked"
+expected_rule = "mcp_elicitation_prompt"
+expected_visible_blocker = true
+
+screen = '''
+MCP server “my-server” requests your input
+
+Grant temporary access to the demo gateway for 15 minutes?
+
+❯ Accept    Decline
+
+Esc to cancel · ↑/↓ to navigate
+'''
