@@ -1,0 +1,14 @@
+agent = "opencode"
+description = "起動直後の待機中プロンプト画面（Ask anything...）"
+evidence = "実機 OpenCode 1.18.30 (Muse Spark 1.3 Free) 起動直後の pane を herdr agent read --source detection --format text で採取(2026-09-10, issue #1)"
+expected_state = "idle"
+expected_fallback_reason = "default_known_agent_idle_fallback"
+
+screen = '''
+                                            ┃
+                                            ┃  Ask anything… "What is the tech stack of this project?"
+                                            ┃
+                                            ┃  Build · Muse Spark 1.3 Free OpenCode Zen
+                                            ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                                                                                            tab agents  ctrl+p commands
+'''

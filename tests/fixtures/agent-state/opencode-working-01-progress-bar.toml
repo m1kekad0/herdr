@@ -1,0 +1,13 @@
+agent = "opencode"
+description = "応答生成中のプログレスバー（⬝■■■■■■⬝）と esc interrupt 表示による working 状態"
+evidence = "実機 OpenCode 1.18.30 (Muse Spark 1.3 Free) 稼働中の pane を herdr agent read --source detection --format text で採取(2026-09-10, issue #1)"
+expected_state = "working"
+expected_rule = "progress_bar_working"
+expected_visible_working = true
+
+screen = '''
+  ┃
+  ┃  Build · Muse Spark 1.3 Free OpenCode Zen
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+   ⬝■■■■■■⬝  esc interrupt                                                                  tab agents  ctrl+p commands    • OpenCode 1.18.30
+'''
