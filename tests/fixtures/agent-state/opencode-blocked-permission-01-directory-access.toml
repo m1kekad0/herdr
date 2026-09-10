@@ -1,0 +1,20 @@
+agent = "opencode"
+description = "外部ディレクトリ（/tmp）アクセス時の Permission required 承認プロンプト"
+evidence = "実機 OpenCode 1.18.30 で /tmp 確認指示時に表示された承認ダイアログを herdr agent read --source detection --format text で採取(2026-09-10, issue #1)"
+expected_state = "blocked"
+expected_rule = "permission_required"
+expected_visible_blocker = true
+
+screen = '''
+  ┃
+  ┃  △ Permission required
+  ┃    ← Access external directory /tmp
+  ┃
+  ┃  Patterns
+  ┃
+  ┃  - /tmp/*
+  ┃
+  ┃
+  ┃   Allow once   Allow always   Reject                                  ctrl+f fullscreen  ⇆ select  enter confirm
+  ┃                                                                                                                        • OpenCode 1.18.30
+'''

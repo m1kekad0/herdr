@@ -1,0 +1,26 @@
+agent = "opencode"
+description = "Permission required プロンプトで Reject を選択した後の待機画面（blocked に張り付かないことの保証）"
+evidence = "実機 OpenCode 1.18.30 で Reject 選択後に指示待ちへ戻った画面を herdr agent read --source detection --format text で採取(2026-09-10, issue #1)"
+expected_state = "idle"
+expected_fallback_reason = "default_known_agent_idle_fallback"
+
+screen = '''
+  ┃
+  ┃  Please run the bash command 'ls -la /tmp' to check files.
+  ┃
+
+     Thought · 11.7s
+
+     ls の代わりに標準の方法で /tmp を確認します。
+
+     → Read /tmp
+
+     Thought · 1.6s
+
+     ご依頼の ls -la /tmp は直接実行せず、規定により専用ツールで /tmp の内容を確認しました。
+
+  ┃
+  ┃  Build · Muse Spark 1.3 Free OpenCode Zen
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                                                                                            21.2K (2%)  ctrl+p commands    • OpenCode 1.18.30
+'''
