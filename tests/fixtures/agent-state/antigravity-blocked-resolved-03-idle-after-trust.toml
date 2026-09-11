@@ -1,0 +1,15 @@
+agent = "antigravity"
+description = "Workspace Trust ダイアログで 'Yes, I trust this folder' を選択して起動完了した画面（blocked に張り付かないことの保証）"
+evidence = "実機 Antigravity CLI 1.2.0 で Workspace Trust dialog を承認（Yes, I trust this folder）して通常プロンプト待機に入った画面(2026-09-10, issue #8)"
+expected_state = "idle"
+
+screen = '''
+Accessing workspace:
+
+/private/tmp/untrusted-workspace-test
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+>
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+? for shortcuts                                                                                                             accept-edits · Gemini 3.8 Flash · high
+'''

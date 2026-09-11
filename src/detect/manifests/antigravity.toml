@@ -1,7 +1,7 @@
 id = "agy"
-version = "2026.09.09.1"
+version = "2026.09.11.1"
 min_engine_version = 1
-updated_at = "2026-09-09T00:00:00Z"
+updated_at = "2026-09-11T00:00:00Z"
 aliases = ["antigravity", "antigravity-cli"]
 
 [[rules]]
@@ -20,6 +20,22 @@ any = [
       { line_regex = ['(?i)^\s*[>›❯]?\s*[2-4]\.\s*(yes|no)'] },
     ] },
   ] },
+]
+
+[[rules]]
+id = "workspace_trust_prompt"
+state = "blocked"
+priority = 300
+region = "whole_recent"
+visible_blocker = true
+contains = [
+  "do you trust the contents of this project?",
+  "requires permission to read, edit, and execute files here",
+  "enter confirm",
+]
+any = [
+  { line_regex = ['(?i)^\s*[>›❯]?\s*yes,\s*i\s*trust\s*this\s*folder'] },
+  { line_regex = ['(?i)^\s*[>›❯]?\s*no,\s*exit'] },
 ]
 
 [[rules]]
