@@ -1,0 +1,21 @@
+agent = "antigravity"
+description = "未信頼ディレクトリ起動時の Workspace Trust ダイアログ表示（blocked 状態）"
+evidence = "実機 Antigravity CLI 1.2.0 で未信頼ディレクトリ起動時に表示された Workspace Trust dialog を herdr agent read --source detection --format text で採取(2026-09-10, issue #8)"
+expected_state = "blocked"
+expected_rule = "workspace_trust_prompt"
+expected_visible_blocker = true
+
+screen = '''
+Accessing workspace:
+
+/private/tmp/untrusted-workspace-test
+
+Do you trust the contents of this project?
+
+Antigravity CLI requires permission to read, edit, and execute files here.
+
+> Yes, I trust this folder
+  No, exit
+
+  ↑/↓ Navigate · enter Confirm
+'''

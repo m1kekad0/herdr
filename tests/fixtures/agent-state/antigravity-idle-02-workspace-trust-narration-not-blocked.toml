@@ -1,0 +1,18 @@
+agent = "antigravity"
+description = "会話文中に 'Do you trust the contents of this project?' と 'requires permission to read, edit, and execute files here' が含まれるが、選択肢UIが無いため blocked と誤検知しない(false positive 回帰)"
+evidence = "実機 Antigravity CLI 1.2.0 に Workspace Trust の文言について質問し、テキストで回答が行われた画面。選択肢 UI や footer がないため blocked にならず idle と判定されることを検証(2026-09-10, issue #8)"
+expected_state = "idle"
+
+screen = '''
+────────────────────────────────────────────────────────────
+> Antigravity CLI の 'Do you trust the contents of this project?' や 'Antigravity CLI requires permission to read, edit, and execute files here.' というプロンプトの意味を教えてください。
+
+▸ Thought for 3s, 420 tokens
+  Explaining Workspace Trust
+  これは Antigravity CLI が信頼されていないディレクトリで起動された際に、プロジェクト内のファイルを読み書き・実行しても安全かどうかをユーザーに確認するダイアログです。信頼する場合はアクセスを許可し、信頼できない場合は終了を選択します。
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+>
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+? for shortcuts                                                                                                             accept-edits · Gemini 3.8 Flash · high
+'''
